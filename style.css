@@ -1,39 +1,49 @@
 :root {
     --clash-forge-border-radius: 8px;
-    --clash-forge-shadow-color: rgba(0,0,0,0.45); /* Slightly adjusted shadow */
-    --clash-forge-bg: #1e1e1e; /* Slightly darker background */
-    --clash-forge-surface: #2d2d2d; /* Surface for cards/boxes */
-    --clash-forge-surface-alt: #252525; /* Alternative surface, e.g. header */
-    --clash-forge-text: #f0f0f0; /* Main text color */
-    --clash-forge-text-muted: #cccccc; /* Muted text */
-    --clash-forge-text-on-accent: #ffffff; /* Text on primary accent backgrounds */
+    --clash-forge-shadow-color: rgba(0,0,0,0.45);
+    --clash-forge-bg: #1e1e1e;
+    --clash-forge-surface: #2d2d2d;
+    --clash-forge-surface-alt: #252525; /* Used for nav and footer */
+    --clash-forge-text: #f0f0f0;
+    --clash-forge-text-muted: #cccccc;
+    --clash-forge-text-on-accent: #ffffff;
     --clash-forge-primary-accent: #0099ff;
-    --clash-forge-primary-accent-hover: #0077cc; /* Darker shade for hover */
+    --clash-forge-primary-accent-hover: #0077cc;
     --clash-forge-secondary-accent: #ffc400;
-    --clash-forge-hover-glow: rgba(0, 153, 255, 0.4); /* Adjusted glow */
-    --clash-forge-border: #444444; /* Slightly lighter border for better visibility */
+    --clash-forge-hover-glow: rgba(0, 153, 255, 0.4);
+    --clash-forge-border: #444444;
     --clash-forge-success: #28a745;
-    --clash-forge-success-bg: rgba(40, 167, 69, 0.1); /* Lighter success bg */
-    --clash-forge-error: #e74c3c; /* Brighter red for errors */
-    --clash-forge-error-bg: rgba(231, 76, 60, 0.1); /* Lighter error bg */
+    --clash-forge-success-bg: rgba(40, 167, 69, 0.1);
+    --clash-forge-error: #e74c3c;
+    --clash-forge-error-bg: rgba(231, 76, 60, 0.1);
     --font-family-sans-serif: 'Roboto', 'Open Sans', 'Segoe UI', sans-serif;
     --font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    --clash-forge-pre-bg: #181818; /* Specific background for preformatted text */
+    --clash-forge-pre-text: #d1d1d1; /* Specific text color for preformatted text */
+    --clash-forge-max-width: 1200px; /* Max width for content containers */
+    --nav-height: 70px; /* Approximate height of the nav bar */
+    --clash-forge-bg-alt: #22252A; /* Alternate background for sections, slightly different from main bg */
+    --card-image-bg: #3a3f44; /* Slightly lighter placeholder for card images */
 }
 
 /* General Reset & Body Styling */
 * {
-    box-sizing: border-box; /* Better box model */
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    scroll-padding-top: var(--nav-height, 70px); /* Offset for fixed header */
 }
 
 body {
     font-family: var(--font-family-sans-serif);
     background-color: var(--clash-forge-bg);
     color: var(--clash-forge-text);
-    line-height: 1.7; /* Improved line height */
-    max-width: 1400px; /* Increased max-width */
-    margin: 0 auto; /* Centering */
+    line-height: 1.7;
+    padding-top: var(--nav-height); /* Global padding to offset fixed nav */
 }
 
 /* Links */
@@ -44,231 +54,622 @@ a {
 }
 a:hover {
     color: var(--clash-forge-primary-accent-hover);
-    text-decoration: underline;
+    /* text-decoration: underline; Removed for cleaner look, can be added if preferred */
 }
 
-/* Header Styling */
-h1 { /* Main "Clash Forge" header */
-    text-align: center;
-    color: var(--clash-forge-text);
+/* New Fixed Navigation Bar Styling */
+#top-nav {
     background-color: var(--clash-forge-surface-alt);
-    padding: 35px 20px; /* Increased padding */
-    margin-bottom: 0; /* Connects to nav */
-    font-size: 2.8em; /* More prominent */
-    font-weight: 700; /* Bolder */
-    border-bottom: 4px solid var(--clash-forge-primary-accent);
-    letter-spacing: 1px;
+    color: var(--clash-forge-text);
+    padding: 0; /* Padding handled by nav-container */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Slightly stronger shadow */
+    display: flex; /* To center nav-container vertically */
+    align-items: center; /* To center nav-container vertically */
 }
 
-/* Navigation Bar Styling */
-nav {
-    background-color: var(--clash-forge-surface);
-    text-align: center;
-    margin-bottom: 35px; /* Increased spacing */
-    border-bottom: 1px solid var(--clash-forge-border);
-    padding: 10px 0;
-}
-
-nav ul {
-    list-style-type: none;
+.nav-container {
+    max-width: var(--clash-forge-max-width);
+    width: 100%;
+    margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem; /* Side padding for the container */
 }
 
-nav ul li a {
-    display: block;
+.nav-logo {
+    font-size: 1.8em; /* Larger logo text */
+    font-weight: 700; /* Bolder logo */
+    color: var(--clash-forge-primary-accent);
+    text-decoration: none;
+}
+.nav-logo:hover {
+    color: var(--clash-forge-primary-accent-hover);
+    text-decoration: none;
+}
+
+#top-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+#top-nav ul li {
+    margin-left: 25px; /* Spacing between nav items */
+}
+
+#top-nav ul li a {
     color: var(--clash-forge-text);
-    text-align: center;
-    padding: 18px 25px; /* Increased padding */
-    text-decoration: none; /* Remove underline by default on tabs */
-    border-right: 1px solid var(--clash-forge-border);
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-    flex-grow: 1;
-    font-size: 1.1em; /* Slightly larger nav links */
+    text-decoration: none;
+    font-size: 1.1em; /* Slightly larger */
     font-weight: 500;
+    padding: 5px 10px; /* Add some padding for easier clicking */
+    border-radius: var(--clash-forge-border-radius);
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
-nav ul li a:hover {
-    text-decoration: none; /* Ensure no underline on hover for tabs */
+
+#top-nav ul li a:hover {
+    color: var(--clash-forge-primary-accent-hover);
+    background-color: rgba(255,255,255,0.05); /* Subtle background on hover */
+}
+#top-nav ul li a.active-link {
+    color: var(--clash-forge-primary-accent); /* Brighter color for active link */
+    font-weight: 700; /* Make active link bolder */
+    background-color: rgba(255,255,255,0.07); /* Slightly more distinct background */
 }
 
 
-nav ul li:last-child a {
-    border-right: none;
+/* Main Content & Section Styling */
+main {
+    display: block; /* Ensure main is treated as a block */
 }
 
-nav ul li a:hover {
-    background-color: var(--clash-forge-surface-alt);
+main section {
+    padding: 2.5rem; /* Consistent padding for sections */
+    min-height: auto; /* Let content dictate height, or a smaller min-height like 50vh */
+    border-bottom: 1px solid var(--clash-forge-border);
+    /* Centering content within sections (if desired globally) */
+    /* max-width: var(--clash-forge-max-width); */ /* Handled by .section-container now */
+    /* margin: 0 auto; */
+    background-color: var(--clash-forge-bg); /* Default section background */
+}
+main section:nth-child(odd) { /* Alternate background for visual rhythm */
+    background-color: var(--clash-forge-bg-alt);
+}
+
+main section:last-of-type {
+    border-bottom: none;
+}
+
+/* Section Container for max-width and centering content */
+.section-container {
+    max-width: var(--clash-forge-max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem; /* Padding for content within the container */
+}
+
+
+/* General Section Heading Styling */
+main section h2 {
+    font-size: 2.8em; /* Increased size */
     color: var(--clash-forge-primary-accent);
-    box-shadow: inset 0 0 12px var(--clash-forge-hover-glow); /* Adjusted glow */
+    text-align: center;
+    margin-bottom: 2rem; /* Reduced spacing */
+    padding-bottom: 1rem;
+    /* border-bottom: 3px solid var(--clash-forge-primary-accent); */ /* Alternative border */
+    position: relative; /* For pseudo-element underline */
+    font-weight: 700;
+}
+/* Decorative underline for section headings */
+main section h2::after {
+    content: '';
+    display: block;
+    width: 80px; /* Width of the underline */
+    height: 4px; /* Thickness of the underline */
+    background-color: var(--clash-forge-secondary-accent); /* Use secondary accent */
+    margin: 0.5rem auto 0; /* Centered below the text */
+    border-radius: 2px;
 }
 
-nav ul li a.active {
-    background-color: var(--clash-forge-primary-accent);
-    color: var(--clash-forge-text-on-accent);
-    font-weight: 700; /* Bolder active tab */
-    box-shadow: none;
-}
 
-/* Content Section Styling */
-.tab-content {
-    margin: 0 25px 35px 25px; /* Increased spacing */
-    min-height: 250px; /* Increased min-height */
+main section h3 { /* Sub-headings within sections, like card titles */
+    font-size: 1.8em; /* Increased size */
+    color: var(--clash-forge-secondary-accent);
+    margin-top: 2rem; /* Increased spacing */
+    margin-bottom: 1rem; /* Increased spacing */
+    font-weight: 600;
+}
+main section p {
+    color: var(--clash-forge-text); /* Default text color for paragraphs in sections */
+    font-size: 1.1em; /* Slightly larger */
+    line-height: 1.8; /* Improved line height */
+    margin-bottom: 1.25rem; /* Increased spacing */
+}
+main section p strong {
+    color: var(--clash-forge-primary-accent); /* Strong text with accent */
+    font-weight: 600;
+}
+/* Remove generic div spacing, be more specific or use .content-box */
+/* main section div:not(#status-box):not(.nav-container):not(.section-container):not(.hero-content) > *:not(:last-child) {
+    margin-bottom: 1rem;
+} */
+
+
+/* Content Box Styling (reusable for boxed content) */
+.content-box {
     background-color: var(--clash-forge-surface);
-    border: 1px solid var(--clash-forge-border);
+    padding: 25px 30px; /* Increased padding */
+    margin-bottom: 25px; /* Space between boxes */
     border-radius: var(--clash-forge-border-radius);
-    padding: 35px; /* Increased padding */
-    box-shadow: 0 5px 15px var(--clash-forge-shadow-color); /* Slightly adjusted shadow */
-    word-wrap: break-word;
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-.tab-content > *:not(:last-child) { /* Consistent vertical spacing */
-    margin-bottom: 20px;
+    box-shadow: 0 5px 15px var(--clash-forge-shadow-color); /* Adjusted shadow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-left: 4px solid transparent; /* For potential accent on hover or type */
 }
 
-
-.tab-content:hover {
-    transform: scale(1.015); /* Slightly reduced scale for subtlety */
-    box-shadow: 0 0 25px 7px var(--clash-forge-hover-glow), 0 8px 18px var(--clash-forge-shadow-color);
+.content-box:hover {
+    transform: translateY(-5px) scale(1.01); /* Adjusted hover effect */
+    box-shadow: 0 0 22px 6px var(--clash-forge-hover-glow), 0 8px 18px var(--clash-forge-shadow-color);
+    border-left-color: var(--clash-forge-primary-accent); /* Accent border on hover */
 }
 
-.tab-content h2, .tab-content h3 {
-    color: var(--clash-forge-primary-accent);
-    border-bottom: 2px solid var(--clash-forge-border); /* Thicker border */
-    padding-bottom: 15px; /* More space */
+.content-box p {
+    color: var(--clash-forge-text-muted); /* Muted text for paragraphs inside content boxes */
+    margin-bottom: 0; /* Paragraphs in content box don't need extra bottom margin if box has padding */
+}
+.content-box p:not(:last-child) {
+    margin-bottom: 1rem; /* Space between paragraphs within the same content box */
+}
+.content-box h3 { /* If a content box has its own h3 */
     margin-top: 0;
-    font-weight: 600; /* Bolder tab/card titles */
-}
-.tab-content h2 { font-size: 1.8em; } /* More prominent tab titles */
-.tab-content h3 { font-size: 1.5em; } /* More prominent card titles */
-
-.tab-content p {
-    color: var(--clash-forge-text-muted);
-    font-size: 1.05em; /* Slightly larger paragraph text */
-    line-height: 1.75;
-}
-.tab-content p strong {
-    color: var(--clash-forge-text);
-    font-weight: 600;
-}
-
-.tab-content.hidden { display: none; }
-
-/* Specific link styling within tab content */
-.tab-content a {
-    color: var(--clash-forge-secondary-accent); /* Use secondary accent for links in content */
-}
-.tab-content a:hover {
-    color: var(--clash-forge-primary-accent); /* Primary accent on hover for contrast */
+    margin-bottom: 15px;
+    color: var(--clash-forge-text); /* Less prominent than section h3 */
+    font-size: 1.4em;
+    border-bottom: 1px solid var(--clash-forge-border);
+    padding-bottom: 10px;
 }
 
 
-/* Status Box Styling */
-#status-box {
+/* Cards Section Styling */
+#cards .section-container { /* Ensure container padding is appropriate if different from others */
+    padding-bottom: 2rem; /* Extra padding at the bottom of the card section container */
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px; /* Slightly increased gap */
+    margin-top: 20px;
+}
+
+.card-item { /* .card-item already reuses .content-box */
+    text-align: center; /* Center content within cards */
+    /* .content-box provides: background, padding, border-radius, shadow, transition, hover border-left */
+    /* Reset padding if content-box default is too large for cards, or adjust content-box */
+    padding: 20px; /* Override content-box padding if needed for denser card layout */
+}
+/* Hover effect for card-item can be inherited from .content-box:hover
+   or can be more specific if needed e.g. different transform or glow */
+.card-item:hover {
+    /* Example: slightly different transform for cards specifically */
+    /* transform: translateY(-8px) scale(1.03); */
+    /* Inherits transform: translateY(-5px) scale(1.01); from .content-box */
+}
+
+
+.card-image {
+    max-width: 100px; /* Or desired size */
+    height: auto;
+    margin: 0 auto 15px auto; /* Center the image and add space below */
+    border-radius: 4px;
+    background-color: var(--card-image-bg); /* Use new var for placeholder bg */
     border: 1px solid var(--clash-forge-border);
-    padding: 20px; /* Increased padding */
-    background-color: var(--clash-forge-surface-alt);
-    border-radius: var(--clash-forge-border-radius);
-    margin-top: 20px; /* Consistent spacing */
-    font-weight: 500; /* Normal weight, bold for labels */
-    transition: border-left-color 0.5s ease, background-color 0.5s ease, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.card-name { /* This will override main section h3 if selectors are not specific enough */
+    font-size: 1.7rem; /* Custom size for card names */
+    color: var(--clash-forge-primary-accent);
+    margin-top: 0; /* Reset margin from generic h3 if any */
+    margin-bottom: 10px;
+    border-bottom: none; /* Remove border from generic h3 if any */
+    padding-bottom: 0; /* Remove padding from generic h3 if any */
+}
+
+.card-description {
+    font-size: 0.95rem; /* Custom size */
+    color: var(--clash-forge-text-muted);
+    line-height: 1.6; /* Custom line height */
+    margin-bottom: 15px;
+    min-height: 60px; /* Give some min height to align boxes if descriptions vary a lot */
+}
+
+.card-stats {
+    font-size: 0.9rem; /* Custom size */
     color: var(--clash-forge-text);
-    box-shadow: 0 4px 10px var(--clash-forge-shadow-color);
+    margin-top: auto; /* Push stats to the bottom if card-item is flex column */
 }
-#status-box p { margin-bottom: 10px; } /* Spacing for status lines */
+
+.stat {
+    display: inline-block;
+    background-color: var(--clash-forge-surface-alt);
+    padding: 6px 12px; /* Adjusted padding */
+    border-radius: var(--clash-forge-border-radius); /* Use global radius */
+    margin: 5px;
+    font-weight: 500;
+    border: 1px solid var(--clash-forge-border);
+}
+
+/* Ensure that the content-box h3 style for card-name is specific */
+.content-box .card-name { /* More specific selector for card names within content boxes */
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--clash-forge-primary-accent);
+    font-size: 1.7rem; /* Was 1.4em for generic .content-box h3 */
+    border-bottom: none; /* Override from .content-box h3 */
+    padding-bottom: 0; /* Override from .content-box h3 */
+}
+
+
+/* Tips Section Styling */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid for tips */
+    gap: 25px; /* Consistent gap with cards-grid */
+    margin-top: 20px;
+}
+
+.tip-item { /* .tip-item reuses .content-box for base styling */
+    /* .content-box provides: background, padding, border-radius, shadow, transition, hover effects */
+    /* Padding can be adjusted if needed, but content-box default might be fine */
+    /* padding: 25px; */ /* Example if override is needed */
+}
+
+.tip-item .tip-title { /* More specific selector to override .content-box h3 if necessary */
+    font-size: 1.6rem; /* Custom size for tip titles */
+    color: var(--clash-forge-primary-accent);
+    margin-top: 0; /* Reset margin from generic h3 */
+    margin-bottom: 15px; /* Space below title */
+    border-bottom: 1px solid var(--clash-forge-border); /* Subtle separator */
+    padding-bottom: 10px; /* Padding for separator */
+    /* The .content-box h3 style already provides most of this, adjust as needed */
+}
+
+
+.tip-item .tip-description {
+    font-size: 1rem;
+    color: var(--clash-forge-text-muted);
+    line-height: 1.7; /* Slightly more line height for readability */
+    margin-bottom: 0; /* No extra margin if it's the last element in tip-item */
+}
+
+/* Status Section Styling */
+#status .status-intro {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--clash-forge-text-muted);
+    font-size: 1.05em;
+    line-height: 1.6;
+}
+#status .status-intro strong {
+    color: var(--clash-forge-secondary-accent); /* Highlight the note */
+}
+
+
+/* #status-box inherits from .content-box. Specific styles if needed: */
+#status-box {
+    /* padding: 20px; */ /* Already from .content-box */
+    /* margin-bottom: 1.5rem; */ /* .content-box has margin-bottom: 25px */
+}
+#status-box p { /* Overriding generic .content-box p if needed, or ensure consistency */
+    color: var(--clash-forge-text-muted);
+    margin-bottom: 10px;
+}
 #status-box p:last-child { margin-bottom: 0; }
-#status-box strong { color: var(--clash-forge-text); font-weight: 600; } /* Labels in status box */
-
-
-#status-box:hover {
-    transform: translateY(-4px) scale(1.01); /* Slightly more lift */
-    box-shadow: 0 0 18px 4px var(--clash-forge-hover-glow), 0 7px 12px var(--clash-forge-shadow-color);
-}
-
-#status-box.status-ok { /* This class is not used, status is set on spans */ }
-
-#api-connection-status[style*="var(--clash-forge-success)"],
-#game-services-status[style*="var(--clash-forge-success)"] {
-    /* Styles for success can be applied via JS or specific classes if needed */
+#status-box strong {
+    color: var(--clash-forge-text);
     font-weight: 600;
 }
-#api-connection-status[style*="var(--clash-forge-error)"],
-#game-services-status[style*="var(--clash-forge-error)"] {
-    font-weight: 600;
+#status-box #last-checked-time { /* Specific styling for last checked time if needed */
+    display: block; /* Make it take its own line */
+    font-size: 0.85em;
+    color: var(--clash-forge-text-muted);
+    margin-top: 10px; /* Space above it */
+    text-align: right; /* Align to the right */
 }
 
 
-/* API Response Preview */
+/* #api-data-preview-container inherits from .content-box */
+#api-data-preview-container {
+    /* margin-top: 20px; */ /* .content-box already has margin-bottom, creating space */
+    /* margin-bottom: 20px; */
+}
+#api-data-preview-container h3 { /* Using the generic .content-box h3 style */
+    /* font-size: 1.4em; */ /* From .content-box h3 */
+    /* color: var(--clash-forge-text); */
+    /* border-bottom: 1px solid var(--clash-forge-border); */
+    /* padding-bottom: 10px; */
+    margin-bottom: 10px; /* Adjust if needed */
+}
+#api-data-preview-container p { /* Intro p before pre tag */
+    font-size: 0.95em;
+    margin-bottom: 10px; /* Space before the pre tag */
+}
+
+
 #raw-api-response {
     font-family: var(--font-family-monospace);
-    background-color: var(--clash-forge-bg); /* Darker background for pre */
-    color: var(--clash-forge-text-muted);
-    padding: 20px; /* Increased padding */
-    border-radius: var(--clash-forge-border-radius);
+    background-color: var(--clash-forge-pre-bg); /* Use new variable */
+    color: var(--clash-forge-pre-text); /* Use new variable */
+    padding: 15px; /* Adjusted padding */
+    border-radius: var(--clash-forge-border-radius); /* Consistent border radius */
     border: 1px solid var(--clash-forge-border);
-    max-height: 400px; /* Increased max height */
+    max-height: 300px; /* Adjusted max height */
     overflow-y: auto;
-    white-space: pre-wrap; /* Wrap long lines */
-    word-break: break-all; /* Break long words/strings */
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-size: 0.9em;
+    /* margin-bottom: 1.5rem; */ /* Handled by parent .content-box margin */
+}
+
+/* #refresh-status-button inherits from .btn and .btn-primary */
+#refresh-status-button {
+    display: block; /* Make it a block to easily center with margin auto */
+    margin: 25px auto 0 auto; /* Center button, increased top margin */
+    max-width: 300px; /* Adjusted max-width */
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 3rem 0; /* Adjusted padding */
+    background-color: var(--clash-forge-surface-alt);
+    color: var(--clash-forge-text-muted);
+    border-top: 1px solid var(--clash-forge-border);
     font-size: 0.9em;
 }
 
-/* Button Styling */
-#refresh-status-button {
-    background-color: var(--clash-forge-primary-accent);
-    color: var(--clash-forge-text-on-accent);
-    border: none;
-    padding: 12px 25px; /* Increased padding */
-    border-radius: var(--clash-forge-border-radius);
-    cursor: pointer;
-    font-size: 1.05em; /* Larger font */
-    font-weight: 600;
-    transition: background-color 0.2s ease-out, transform 0.1s ease;
-    display: block; /* Allow margin auto or easier centering if needed */
-    margin: 20px auto 0 auto; /* Center button */
-}
-
-#refresh-status-button:hover {
-    background-color: var(--clash-forge-primary-accent-hover);
-    transform: translateY(-1px); /* Subtle lift on hover */
-    text-decoration: none; /* Ensure no underline from general <a> tag styles */
-}
-#refresh-status-button:active {
-    transform: translateY(0px); /* Click effect */
-}
-
-#refresh-status-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    background-color: var(--clash-forge-surface-alt); /* Different bg when disabled */
-    color: var(--clash-forge-text-muted);
-}
-
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    body { max-width: 100%; }
-    h1 { font-size: 2.2em; padding: 30px 15px; }
-    nav ul li a { padding: 16px 20px; font-size: 1em; }
-    .tab-content { margin: 0 20px 30px 20px; padding: 30px; }
-    .tab-content h2 { font-size: 1.6em; }
-    .tab-content h3 { font-size: 1.3em; }
+    /* body { padding-top: calc(var(--nav-height) + 10px); } */
+    .nav-container { padding: 0 1rem; }
+    /* #top-nav ul { flex-wrap: wrap; justify-content: center; } */
+    /* #top-nav ul li { margin: 5px 10px; } */
+
+    main section { padding: 2rem 1.5rem; min-height: calc(70vh - var(--nav-height)); }
+    main section h2 { font-size: 2.2em; margin-bottom: 2rem; }
+    main section h3 { font-size: 1.5em; } /* General h3 in sections */
+    .content-box { padding: 20px 25px; }
+    .card-name { font-size: 1.5rem; }
+    .card-description { font-size: 0.9rem; min-height: 50px; }
+    .stat { padding: 5px 10px; font-size: 0.85rem; }
+    .tip-item .tip-title { font-size: 1.3rem; } /* Responsive tip title */
+    .tip-item .tip-description { font-size: 0.95rem; } /* Responsive tip description */
     #refresh-status-button { padding: 10px 20px; font-size: 1em; }
 }
 
 @media (max-width: 480px) {
-    h1 { font-size: 1.8em; padding: 25px 10px; }
-    nav ul { flex-direction: column; }
-    nav ul li { width: 100%; }
-    nav ul li a { border-right: none; border-bottom: 1px solid var(--clash-forge-border); }
-    nav ul li:last-child a { border-bottom: none; }
-    .tab-content { margin: 0 10px 20px 10px; padding: 20px; border-radius: var(--clash-forge-border-radius); }
-    .tab-content h2 { font-size: 1.4em; }
-    .tab-content h3 { font-size: 1.2em; }
+    /* Adjusted body padding-top for stacked nav. This is an estimate.
+       A more robust solution might involve JS if nav height is dynamic. */
+    body { padding-top: 130px; /* Increased slightly for potentially more items or larger logo */ }
+    .nav-container { flex-direction: column; padding-bottom: 10px; }
+    #top-nav { height: auto; }
+    #top-nav ul { flex-direction: column; align-items: center; width: 100%; }
+    #top-nav ul li { margin: 8px 0; }
+    #top-nav ul li a { width: 100%; text-align: center; padding: 10px; }
+
+    main section { padding: 1.5rem 1rem; }
+    main section h2 { font-size: 1.9em; margin-bottom: 1.5rem; }
+    main section h2::after { width: 60px; height: 3px; }
+    main section h3 { font-size: 1.4em; } /* General h3 in sections */
+    .cards-grid { grid-template-columns: 1fr; gap: 20px; }
+    .tips-grid { grid-template-columns: 1fr; gap: 20px; } /* Stack tips on very small screens */
+    .card-item { padding: 15px; }
+    .card-name { font-size: 1.4rem; }
+    .card-description { font-size: 0.85rem; min-height: 40px; }
+    .stat { padding: 4px 8px; font-size: 0.8rem; }
+    .tip-item .tip-title { font-size: 1.2rem; } /* Responsive tip title */
+    .tip-item .tip-description { font-size: 0.9rem; } /* Responsive tip description */
+    .content-box { padding: 15px 20px; }
     #status-box { padding: 15px; }
     #raw-api-response { padding: 15px; font-size: 0.85em; }
-    #refresh-status-button { width: 100%; /* Full width button on small screens */ padding: 12px 15px; }
+    #refresh-status-button { width: 90%; padding: 12px 15px; }
 }
 
-/* Utility class for hidden (already used by JS) */
+/* Utility class for hidden (was for tabs, might be reused or removed) */
 .hidden { display: none !important; }
+
+/* Active link styling for single-page navigation (JS will add/remove this class) */
+/* #top-nav ul li a.active-link defined above with hover state */
+
+
+/* Scroll Animation Helper Classes */
+.fade-in-on-scroll {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+
+.slide-in-bottom-on-scroll {
+    opacity: 0;
+    transform: translateY(50px); /* Start 50px down */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-in-left-on-scroll {
+    opacity: 0;
+    transform: translateX(-50px); /* Start 50px to the left */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-in-right-on-scroll {
+    opacity: 0;
+    transform: translateX(50px); /* Start 50px to the right */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Class to add when element is visible */
+.is-visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0); /* Reset transforms */
+}
+
+
+/* Footer Styling */
+footer {
+    background-color: var(--clash-forge-surface-alt);
+    color: var(--clash-forge-text-muted);
+    padding: 40px 0; /* Increased padding */
+    text-align: center;
+    border-top: 1px solid var(--clash-forge-border);
+    font-size: 0.9rem; /* Base font size for footer */
+}
+
+footer .section-container { /* Ensure padding is appropriate if default section-container padding is too much */
+    padding: 0 1.5rem;
+}
+
+footer p {
+    margin-bottom: 15px; /* Spacing between paragraphs */
+}
+footer p:last-child {
+    margin-bottom: 0;
+}
+
+.footer-links {
+    margin-bottom: 20px; /* More space after links */
+}
+
+.footer-links a {
+    color: var(--clash-forge-text-muted);
+    text-decoration: none;
+    margin: 0 15px; /* Slightly more margin */
+    font-size: 1.6rem; /* Increased size for "icons" */
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--clash-forge-primary-accent);
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+.footer-disclaimer {
+    font-size: 0.85rem; /* Slightly larger disclaimer */
+    color: #777; /* Even more muted */
+    margin-top: 20px; /* Space above disclaimer */
+}
+
+
+/* Hero Section Styling */
+#hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    /* background-color: var(--clash-forge-bg); */ /* Already set on body, could be different here */
+    /* padding-top: var(--nav-height); */ /* Body already has this, so section itself doesn't need it if it's the first one */
+    /* To ensure hero content is below nav, padding-top on body is key.
+       If hero had a unique background that should go *under* a transparent nav,
+       then body padding-top would be 0, and hero section itself would need padding for its content.
+       Current setup with solid nav and body padding-top is fine. */
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 1rem; /* Add some padding for smaller screens if content is too wide */
+}
+
+.hero-headline {
+    font-size: 3.8rem; /* Slightly increased */
+    font-weight: 700; /* Bold is usually 700 */
+    color: var(--clash-forge-primary-accent);
+    margin-bottom: 1.5rem; /* Increased margin */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out 0.5s forwards;
+    line-height: 1.2; /* For large headlines */
+}
+
+.hero-subheadline {
+    font-size: 1.6rem; /* Slightly increased */
+    color: var(--clash-forge-text-muted);
+    margin-bottom: 2.5rem; /* Increased margin */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out 0.8s forwards;
+    line-height: 1.5;
+}
+
+/* General Button Styling */
+.btn {
+    display: inline-block;
+    padding: 14px 30px; /* Increased padding */
+    font-size: 1.1rem; /* Slightly larger */
+    font-weight: 600; /* Bolder */
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--clash-forge-border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    line-height: 1.5; /* Ensure text is vertically centered if padding is uneven */
+}
+.btn:hover {
+    text-decoration: none; /* Remove underline from general <a> hover */
+}
+
+
+.btn-primary {
+    background-color: var(--clash-forge-primary-accent);
+    color: var(--clash-forge-text-on-accent);
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Subtle shadow for primary button */
+}
+
+.btn-primary:hover {
+    background-color: var(--clash-forge-primary-accent-hover);
+    transform: translateY(-3px); /* More lift */
+    box-shadow: 0 6px 12px var(--clash-forge-shadow-color); /* Enhanced shadow on hover */
+}
+
+.hero-cta {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out 1.1s forwards;
+}
+
+/* Keyframes for Animation */
+@keyframes fadeInSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments for Hero (add to existing media queries or create new ones) */
+@media (max-width: 768px) {
+    .hero-headline {
+        font-size: 2.8rem; /* Adjusted */
+    }
+    .hero-subheadline {
+        font-size: 1.3rem; /* Adjusted */
+    }
+    .btn { /* Adjust button padding for smaller screens */
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #hero {
+        min-height: 90vh; /* Slightly less height on very small screens */
+    }
+    .hero-headline {
+        font-size: 2.2rem; /* Further adjust */
+    }
+    .hero-subheadline {
+        font-size: 1.1rem; /* Further adjust */
+    }
+}

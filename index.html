@@ -7,52 +7,128 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Clash Forge</h1>
-    <nav>
-        <ul>
-            <li><a href="#game-info">Game Info</a></li>
-            <li><a href="#cards">Cards</a></li>
-            <li><a href="#status">Status</a></li>
-        </ul>
+    <nav id="top-nav">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">Clash Forge</a>
+            <ul>
+                <li><a href="#game-info">Game Info</a></li>
+                <li><a href="#cards">Cards</a></li>
+                <li><a href="#tips">Tips</a></li>
+                <li><a href="#status">Status</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <div id="game-info" class="tab-content">
-        <h2>About Clash Royale</h2>
-        <p>Clash Royale is a real-time strategy video game developed and published by Supercell. The game combines elements from collectible card games, tower defense, and multiplayer online battle arena.</p>
-        <p>Players battle in 1v1 or 2v2 matches, deploying troops, spells, and buildings from their customizable deck of 8 cards to destroy their opponent's towers.</p>
-        <p>This website will provide you with useful information, card details, and the current game status (simulated).</p>
-    </div>
-    <div id="cards" class="tab-content hidden">
-        <h2>Featured Cards</h2>
-        <div>
-            <h3>Knight</h3>
-            <p>A tough melee fighter. The Barbarian's handsome, cultured cousin. Rumor has it that he was knighted based on the sheer awesomeness of his mustache alone.</p>
-        </div>
-        <div>
-            <h3>Archers</h3>
-            <p>A pair of lightly armored ranged attackers. They'll help you take down ground and air units, but you're on your own with hair styling!</p>
-        </div>
-        <div>
-            <h3>Giant</h3>
-            <p>Slow but durable, the Giant is a powerful tank. He can soak up a lot of damage and is great for leading an offensive push.</p>
-        </div>
-    </div>
-    <div id="status" class="tab-content hidden">
-        <h2>Game & API Status</h2>
-        <p>This section attempts to connect to the official Clash Royale API to check its status and display a sample of data. Note that direct browser access to the API may be restricted by IP whitelisting; a backend proxy is typically used in production.</p>
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1 class="hero-headline">Clash Forge</h1>
+                <p class="hero-subheadline">Your Ultimate Tactical Hub for Clash Royale Mastery.</p>
+                <a href="#game-info" class="btn btn-primary hero-cta">Explore Features</a>
+            </div>
+        </section>
+        <section id="game-info">
+            <div class="section-container">
+                <h2>About Clash Royale</h2>
+                <div class="content-box slide-in-left-on-scroll">
+                    <p>Clash Royale is a real-time strategy video game developed and published by Supercell. The game combines elements from collectible card games, tower defense, and multiplayer online battle arena.</p>
+                </div>
+                <div class="content-box slide-in-right-on-scroll">
+                    <p>Players battle in 1v1 or 2v2 matches, deploying troops, spells, and buildings from their customizable deck of 8 cards to destroy their opponent's towers.</p>
+                </div>
+                 <div class="content-box slide-in-bottom-on-scroll">
+                    <p>This website, Clash Forge, aims to be your tactical hub, providing useful information, card details, tips, and the current game status (simulated via API).</p>
+                </div>
+            </div>
+        </section>
+        <section id="cards">
+            <div class="section-container">
+                <h2>Featured Cards</h2>
+                <div class="cards-grid"> <!-- Grid container for the cards -->
+                    <div class="card-item content-box slide-in-bottom-on-scroll"> <!-- Reusing .content-box for base styling, adding .card-item for specifics -->
+                        <img src="https://via.placeholder.com/100x120.png?text=Knight" alt="Knight Card" class="card-image">
+                        <h3 class="card-name">Knight</h3>
+                        <p class="card-description">A tough melee fighter. The Barbarian's handsome, cultured cousin. Rumor has it that he was knighted based on the sheer awesomeness of his mustache alone.</p>
+                        <div class="card-stats">
+                            <span class="stat">Elixir: 3</span>
+                            <span class="stat">Type: Troop</span>
+                        </div>
+                    </div>
+                    <div class="card-item content-box slide-in-bottom-on-scroll">
+                        <img src="https://via.placeholder.com/100x120.png?text=Archers" alt="Archers Card" class="card-image">
+                        <h3 class="card-name">Archers</h3>
+                        <p class="card-description">A pair of lightly armored ranged attackers. They'll help you take down ground and air units, but you're on your own with hair styling!</p>
+                        <div class="card-stats">
+                            <span class="stat">Elixir: 3</span>
+                            <span class="stat">Type: Troop</span>
+                        </div>
+                    </div>
+                    <div class="card-item content-box slide-in-bottom-on-scroll">
+                        <img src="https://via.placeholder.com/100x120.png?text=Giant" alt="Giant Card" class="card-image">
+                        <h3 class="card-name">Giant</h3>
+                        <p class="card-description">Slow but durable, the Giant is a powerful tank. He can soak up a lot of damage and is great for leading an offensive push.</p>
+                        <div class="card-stats">
+                            <span class="stat">Elixir: 5</span>
+                            <span class="stat">Type: Troop</span>
+                        </div>
+                    </div>
+                    <!-- Add more cards if desired -->
+                </div>
+            </div>
+        </section>
+        <section id="tips">
+            <div class="section-container">
+                <h2>Tips & Advice</h2>
+                <div class="tips-grid"> <!-- Optional: if we want a grid layout for tips too -->
+                    <div class="tip-item content-box slide-in-left-on-scroll"> <!-- Reusing .content-box -->
+                        <h3 class="tip-title">Manage Your Elixir</h3>
+                        <p class="tip-description">Don't just spam troops! Pay attention to your Elixir bar. Try to make positive Elixir trades by countering your opponent's cards with cheaper ones. Saving Elixir can allow you to build a powerful push.</p>
+                    </div>
+                    <div class="tip-item content-box slide-in-right-on-scroll">
+                        <h3 class="tip-title">Know Your Card Roles</h3>
+                        <p class="tip-description">Understand what each card in your deck is for. Some are for defense (e.g., Inferno Tower), some for offense (e.g., Hog Rider), and some are versatile. Knowing their strengths and weaknesses is key.</p>
+                    </div>
+                    <div class="tip-item content-box slide-in-bottom-on-scroll">
+                        <h3 class="tip-title">Counter Push Effectively</h3>
+                        <p class="tip-description">After successfully defending an opponent's attack, use your remaining defensive troops to start a counter push. Adding a tank or a high-damage unit in front of them can turn defense into a dangerous offense.</p>
+                    </div>
+                    <!-- Add more tips if desired -->
+                </div>
+            </div>
+        </section>
+        <section id="status">
+            <div class="section-container">
+                <h2>Game & API Status</h2>
+                <p class="status-intro">This section attempts to connect to the official Clash Royale API to provide an indication of service availability. <br><strong>Note:</strong> Access may be limited if the website's IP address is not whitelisted for the provided API key.</p>
 
-        <div id="status-box">
-            <p><strong>API Connection:</strong> <span id="api-connection-status">Pending...</span></p>
-            <p><strong>Game Services:</strong> <span id="game-services-status">Unknown (API dependent)</span></p>
-            <p><strong>Last Checked:</strong> <span id="last-checked-time">Never</span></p>
+                <div id="status-box" class="content-box slide-in-bottom-on-scroll"> <!-- Reusing .content-box -->
+                    <p><strong>API Connection:</strong> <span id="api-connection-status">Initializing...</span></p>
+                    <p><strong>Game Services:</strong> <span id="game-services-status">Initializing...</span></p>
+                    <p id="last-checked-time">Last checked: Never</p>
+                </div>
+
+                <div id="api-data-preview-container" class="content-box slide-in-bottom-on-scroll"> <!-- Box for the preview -->
+                    <h3>API Data Preview (Proxy Check)</h3>
+                    <p>Attempting to fetch data from a Clash Royale API endpoint as a health check:</p>
+                    <pre id="raw-api-response">Awaiting status check...</pre>
+                </div>
+
+                <button id="refresh-status-button" class="btn btn-primary">Refresh Status</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="section-container"> <!-- Reuse section-container for consistent width -->
+            <p>&copy; 2024 Clash Forge. Your Tactical Hub for Clash Royale.</p>
+            <div class="footer-links">
+                <a href="#" aria-label="Twitter" title="Twitter (Coming Soon)">TW</a>
+                <a href="#" aria-label="YouTube" title="YouTube (Coming Soon)">YT</a>
+                <a href="#" aria-label="Discord" title="Discord (Coming Soon)">DC</a>
+            </div>
+            <p class="footer-disclaimer">Clash Royale is a trademark of Supercell. This site is not affiliated with Supercell.</p>
         </div>
-
-        <h3>API Data Preview</h3>
-        <p>A raw response from a test API endpoint will be shown below:</p>
-        <pre id="raw-api-response">Click "Refresh Status" to fetch data...</pre>
-
-        <button id="refresh-status-button">Refresh Status</button>
-    </div>
+    </footer>
 
     <script src="script.js" defer></script>
 </body>
