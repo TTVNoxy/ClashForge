@@ -1,169 +1,274 @@
-/* Body Styling */
+:root {
+    --clash-forge-border-radius: 8px;
+    --clash-forge-shadow-color: rgba(0,0,0,0.45); /* Slightly adjusted shadow */
+    --clash-forge-bg: #1e1e1e; /* Slightly darker background */
+    --clash-forge-surface: #2d2d2d; /* Surface for cards/boxes */
+    --clash-forge-surface-alt: #252525; /* Alternative surface, e.g. header */
+    --clash-forge-text: #f0f0f0; /* Main text color */
+    --clash-forge-text-muted: #cccccc; /* Muted text */
+    --clash-forge-text-on-accent: #ffffff; /* Text on primary accent backgrounds */
+    --clash-forge-primary-accent: #0099ff;
+    --clash-forge-primary-accent-hover: #0077cc; /* Darker shade for hover */
+    --clash-forge-secondary-accent: #ffc400;
+    --clash-forge-hover-glow: rgba(0, 153, 255, 0.4); /* Adjusted glow */
+    --clash-forge-border: #444444; /* Slightly lighter border for better visibility */
+    --clash-forge-success: #28a745;
+    --clash-forge-success-bg: rgba(40, 167, 69, 0.1); /* Lighter success bg */
+    --clash-forge-error: #e74c3c; /* Brighter red for errors */
+    --clash-forge-error-bg: rgba(231, 76, 60, 0.1); /* Lighter error bg */
+    --font-family-sans-serif: 'Roboto', 'Open Sans', 'Segoe UI', sans-serif;
+    --font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+/* General Reset & Body Styling */
+* {
+    box-sizing: border-box; /* Better box model */
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0 auto; /* Center content */
-    padding: 0; /* Remove padding, header/nav will span full width if needed */
-    background-color: #f0f2f5;
-    color: #333;
-    line-height: 1.6;
-    max-width: 1200px; /* Max width for the content area */
+    font-family: var(--font-family-sans-serif);
+    background-color: var(--clash-forge-bg);
+    color: var(--clash-forge-text);
+    line-height: 1.7; /* Improved line height */
+    max-width: 1400px; /* Increased max-width */
+    margin: 0 auto; /* Centering */
+}
+
+/* Links */
+a {
+    color: var(--clash-forge-primary-accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: var(--clash-forge-primary-accent-hover);
+    text-decoration: underline;
 }
 
 /* Header Styling */
-h1 {
+h1 { /* Main "Clash Forge" header */
     text-align: center;
-    color: #ffffff;
-    background-color: #007bff;
-    padding: 25px 15px; /* Increased padding slightly */
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 2em; /* Slightly larger font for main header */
+    color: var(--clash-forge-text);
+    background-color: var(--clash-forge-surface-alt);
+    padding: 35px 20px; /* Increased padding */
+    margin-bottom: 0; /* Connects to nav */
+    font-size: 2.8em; /* More prominent */
+    font-weight: 700; /* Bolder */
+    border-bottom: 4px solid var(--clash-forge-primary-accent);
+    letter-spacing: 1px;
 }
 
 /* Navigation Bar Styling */
 nav {
-    background-color: #343a40;
+    background-color: var(--clash-forge-surface);
     text-align: center;
-    margin-bottom: 25px;
-    border-bottom: 3px solid #0056b3;
-    padding: 5px 0; /* Add some padding for wrapped items */
+    margin-bottom: 35px; /* Increased spacing */
+    border-bottom: 1px solid var(--clash-forge-border);
+    padding: 10px 0;
 }
 
 nav ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex; /* Use flexbox for better alignment and wrapping */
-    flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
-    justify-content: center; /* Center tabs */
-}
-
-nav ul li {
-    /* display: inline-block; removed as flex handles this */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 nav ul li a {
     display: block;
-    color: white;
+    color: var(--clash-forge-text);
     text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-    border-right: 1px solid #4f5962;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    flex-grow: 1; /* Allow tabs to grow if space allows (optional) */
+    padding: 18px 25px; /* Increased padding */
+    text-decoration: none; /* Remove underline by default on tabs */
+    border-right: 1px solid var(--clash-forge-border);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    flex-grow: 1;
+    font-size: 1.1em; /* Slightly larger nav links */
+    font-weight: 500;
 }
+nav ul li a:hover {
+    text-decoration: none; /* Ensure no underline on hover for tabs */
+}
+
 
 nav ul li:last-child a {
     border-right: none;
 }
 
 nav ul li a:hover {
-    background-color: #007bff;
-    color: #ffffff;
+    background-color: var(--clash-forge-surface-alt);
+    color: var(--clash-forge-primary-accent);
+    box-shadow: inset 0 0 12px var(--clash-forge-hover-glow); /* Adjusted glow */
 }
 
 nav ul li a.active {
-    background-color: #0056b3;
-    color: #ffffff;
-    font-weight: bold;
+    background-color: var(--clash-forge-primary-accent);
+    color: var(--clash-forge-text-on-accent);
+    font-weight: 700; /* Bolder active tab */
+    box-shadow: none;
 }
 
 /* Content Section Styling */
 .tab-content {
-    display: block;
-    margin: 0 15px 25px 15px; /* Adjusted side margins for smaller screens */
-    min-height: 150px;
-    background-color: #ffffff;
-    border: 1px solid #d1d9e0;
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    word-wrap: break-word; /* Prevent overflow */
+    margin: 0 25px 35px 25px; /* Increased spacing */
+    min-height: 250px; /* Increased min-height */
+    background-color: var(--clash-forge-surface);
+    border: 1px solid var(--clash-forge-border);
+    border-radius: var(--clash-forge-border-radius);
+    padding: 35px; /* Increased padding */
+    box-shadow: 0 5px 15px var(--clash-forge-shadow-color); /* Slightly adjusted shadow */
+    word-wrap: break-word;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.tab-content > *:not(:last-child) { /* Consistent vertical spacing */
+    margin-bottom: 20px;
 }
 
-.tab-content.hidden {
-    display: none;
+
+.tab-content:hover {
+    transform: scale(1.015); /* Slightly reduced scale for subtlety */
+    box-shadow: 0 0 25px 7px var(--clash-forge-hover-glow), 0 8px 18px var(--clash-forge-shadow-color);
 }
 
-/* Specific card entry styling example (if distinct boxes for cards are made) */
-.card-entry { /* Example if we had divs with this class in #cards tab */
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 4px;
-    transition: box-shadow 0.3s ease;
+.tab-content h2, .tab-content h3 {
+    color: var(--clash-forge-primary-accent);
+    border-bottom: 2px solid var(--clash-forge-border); /* Thicker border */
+    padding-bottom: 15px; /* More space */
+    margin-top: 0;
+    font-weight: 600; /* Bolder tab/card titles */
+}
+.tab-content h2 { font-size: 1.8em; } /* More prominent tab titles */
+.tab-content h3 { font-size: 1.5em; } /* More prominent card titles */
+
+.tab-content p {
+    color: var(--clash-forge-text-muted);
+    font-size: 1.05em; /* Slightly larger paragraph text */
+    line-height: 1.75;
+}
+.tab-content p strong {
+    color: var(--clash-forge-text);
+    font-weight: 600;
 }
 
-.card-entry:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.tab-content.hidden { display: none; }
+
+/* Specific link styling within tab content */
+.tab-content a {
+    color: var(--clash-forge-secondary-accent); /* Use secondary accent for links in content */
+}
+.tab-content a:hover {
+    color: var(--clash-forge-primary-accent); /* Primary accent on hover for contrast */
 }
 
 
 /* Status Box Styling */
 #status-box {
-    border: 1px solid #bac8d3;
-    padding: 15px;
-    background-color: #e9ecef;
-    border-radius: 5px;
-    margin-top: 10px; /* Give some space if there's text above it */
-    font-weight: bold;
-    transition: border-left-color 0.5s ease; /* Smooth transition for border color change */
+    border: 1px solid var(--clash-forge-border);
+    padding: 20px; /* Increased padding */
+    background-color: var(--clash-forge-surface-alt);
+    border-radius: var(--clash-forge-border-radius);
+    margin-top: 20px; /* Consistent spacing */
+    font-weight: 500; /* Normal weight, bold for labels */
+    transition: border-left-color 0.5s ease, background-color 0.5s ease, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    color: var(--clash-forge-text);
+    box-shadow: 0 4px 10px var(--clash-forge-shadow-color);
+}
+#status-box p { margin-bottom: 10px; } /* Spacing for status lines */
+#status-box p:last-child { margin-bottom: 0; }
+#status-box strong { color: var(--clash-forge-text); font-weight: 600; } /* Labels in status box */
+
+
+#status-box:hover {
+    transform: translateY(-4px) scale(1.01); /* Slightly more lift */
+    box-shadow: 0 0 18px 4px var(--clash-forge-hover-glow), 0 7px 12px var(--clash-forge-shadow-color);
 }
 
-#status-box.status-ok {
-    border-left: 7px solid green;
-    background-color: #e6ffed; /* Lighter green background */
+#status-box.status-ok { /* This class is not used, status is set on spans */ }
+
+#api-connection-status[style*="var(--clash-forge-success)"],
+#game-services-status[style*="var(--clash-forge-success)"] {
+    /* Styles for success can be applied via JS or specific classes if needed */
+    font-weight: 600;
+}
+#api-connection-status[style*="var(--clash-forge-error)"],
+#game-services-status[style*="var(--clash-forge-error)"] {
+    font-weight: 600;
 }
 
-#status-box.status-error { /* Example for future use */
-    border-left: 7px solid red;
-    background-color: #ffebee; /* Lighter red background */
+
+/* API Response Preview */
+#raw-api-response {
+    font-family: var(--font-family-monospace);
+    background-color: var(--clash-forge-bg); /* Darker background for pre */
+    color: var(--clash-forge-text-muted);
+    padding: 20px; /* Increased padding */
+    border-radius: var(--clash-forge-border-radius);
+    border: 1px solid var(--clash-forge-border);
+    max-height: 400px; /* Increased max height */
+    overflow-y: auto;
+    white-space: pre-wrap; /* Wrap long lines */
+    word-break: break-all; /* Break long words/strings */
+    font-size: 0.9em;
 }
 
-/* Responsive adjustments for smaller screens */
+/* Button Styling */
+#refresh-status-button {
+    background-color: var(--clash-forge-primary-accent);
+    color: var(--clash-forge-text-on-accent);
+    border: none;
+    padding: 12px 25px; /* Increased padding */
+    border-radius: var(--clash-forge-border-radius);
+    cursor: pointer;
+    font-size: 1.05em; /* Larger font */
+    font-weight: 600;
+    transition: background-color 0.2s ease-out, transform 0.1s ease;
+    display: block; /* Allow margin auto or easier centering if needed */
+    margin: 20px auto 0 auto; /* Center button */
+}
+
+#refresh-status-button:hover {
+    background-color: var(--clash-forge-primary-accent-hover);
+    transform: translateY(-1px); /* Subtle lift on hover */
+    text-decoration: none; /* Ensure no underline from general <a> tag styles */
+}
+#refresh-status-button:active {
+    transform: translateY(0px); /* Click effect */
+}
+
+#refresh-status-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--clash-forge-surface-alt); /* Different bg when disabled */
+    color: var(--clash-forge-text-muted);
+}
+
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 1.8em;
-        padding: 20px 10px;
-    }
-
-    nav ul li a {
-        padding: 12px 15px; /* Slightly smaller padding for nav links */
-        font-size: 0.95em;
-    }
-
-    .tab-content {
-        margin: 0 10px 20px 10px; /* Reduce side margins further */
-        padding: 20px;
-    }
+    body { max-width: 100%; }
+    h1 { font-size: 2.2em; padding: 30px 15px; }
+    nav ul li a { padding: 16px 20px; font-size: 1em; }
+    .tab-content { margin: 0 20px 30px 20px; padding: 30px; }
+    .tab-content h2 { font-size: 1.6em; }
+    .tab-content h3 { font-size: 1.3em; }
+    #refresh-status-button { padding: 10px 20px; font-size: 1em; }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 1.5em;
-    }
-    nav ul {
-        flex-direction: column; /* Stack nav items vertically */
-    }
-    nav ul li {
-        width: 100%; /* Make nav items full width */
-    }
-    nav ul li a {
-        border-right: none; /* Remove side border when stacked */
-        border-bottom: 1px solid #4f5962; /* Add bottom border */
-    }
-    nav ul li:last-child a {
-        border-bottom: none; /* No border for the last item */
-    }
-
-    .tab-content {
-        margin: 0 5px 15px 5px; /* Minimal side margins */
-        padding: 15px;
-    }
-
-    #status-box {
-        padding: 12px;
-        font-size: 0.9em;
-    }
+    h1 { font-size: 1.8em; padding: 25px 10px; }
+    nav ul { flex-direction: column; }
+    nav ul li { width: 100%; }
+    nav ul li a { border-right: none; border-bottom: 1px solid var(--clash-forge-border); }
+    nav ul li:last-child a { border-bottom: none; }
+    .tab-content { margin: 0 10px 20px 10px; padding: 20px; border-radius: var(--clash-forge-border-radius); }
+    .tab-content h2 { font-size: 1.4em; }
+    .tab-content h3 { font-size: 1.2em; }
+    #status-box { padding: 15px; }
+    #raw-api-response { padding: 15px; font-size: 0.85em; }
+    #refresh-status-button { width: 100%; /* Full width button on small screens */ padding: 12px 15px; }
 }
+
+/* Utility class for hidden (already used by JS) */
+.hidden { display: none !important; }

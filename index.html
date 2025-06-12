@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clash Royale Fansite</title>
+    <title>Clash Forge - Clash Royale Fansite</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Clash Royale Fansite</h1>
+    <h1>Clash Forge</h1>
     <nav>
         <ul>
             <li><a href="#game-info">Game Info</a></li>
@@ -38,8 +38,20 @@
         </div>
     </div>
     <div id="status" class="tab-content hidden">
-        <p>Below is the current (simulated) game server status:</p>
-        <div id="status-box">Status: Checking...</div>
+        <h2>Game & API Status</h2>
+        <p>This section attempts to connect to the official Clash Royale API to check its status and display a sample of data. Note that direct browser access to the API may be restricted by IP whitelisting; a backend proxy is typically used in production.</p>
+
+        <div id="status-box">
+            <p><strong>API Connection:</strong> <span id="api-connection-status">Pending...</span></p>
+            <p><strong>Game Services:</strong> <span id="game-services-status">Unknown (API dependent)</span></p>
+            <p><strong>Last Checked:</strong> <span id="last-checked-time">Never</span></p>
+        </div>
+
+        <h3>API Data Preview</h3>
+        <p>A raw response from a test API endpoint will be shown below:</p>
+        <pre id="raw-api-response">Click "Refresh Status" to fetch data...</pre>
+
+        <button id="refresh-status-button">Refresh Status</button>
     </div>
 
     <script src="script.js" defer></script>
